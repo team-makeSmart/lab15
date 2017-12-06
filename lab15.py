@@ -16,7 +16,7 @@ def craps():
         die2 = randint(1,6)
         roll = die1 + die2
         rollNum += 1
-        print "Your rolled a %s and a %s for a total of %s" % (die1, die2, roll)
+        print "You rolled a %s and a %s for a total of %s" % (die1, die2, roll)
         if rollNum == 1:
             if roll == 7 or roll == 11:
                 print "You win!"
