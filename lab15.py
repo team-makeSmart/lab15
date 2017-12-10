@@ -3,7 +3,7 @@
 # Pavlos Papadonikolakis, Maco Doussias, Jake McGhee
 
 #PROBLEM 1:     craps() Typing function into console fulfills problem 1 for craps dice game
-#               Note: craps() will continue rolling die until player wins!
+#               Note: craps() will continue rolling die until player wins or loses!
 #
 #PROBLEM 2:     birthMonthCal() prints calendar of birth month
 #               daysToBday() will calculate days left until your next birthday
