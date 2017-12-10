@@ -49,6 +49,7 @@ def craps():
 import calendar #To print calendar to console
 import datetime #For date objects and other date functions
 
+
 def getIntWithinRange(promptMsg,low,high):
   """ Prompts user to input an integer value, verifies that is an integer in range, and returns it""" 
   """ Args: """
@@ -97,6 +98,7 @@ def daysToBday():
   print( difference.days ) 
   print('----------------------------------------------------------') 
   
+    
 def getDayOfWeek():
   """ Prompts the user to input a date """
   """ Prints that date to the console """  
@@ -105,7 +107,6 @@ def getDayOfWeek():
   day = getIntWithinRange('ENTER INTEGER VALUE FOR DAY: ',1,31) 
   userDate = date(year,month,day) #create a date object with user input
   dayNum = userDate.weekday() # get the numerical day of the week from date object 0 = monday, 1 = Tueday, ...  
-  
   #Use the number corresponding to the day of the week to assign name of the day
   if dayNum == 0:
     dayName = 'Monday'
@@ -121,10 +122,8 @@ def getDayOfWeek():
     dayName = 'Saturday'
   elif dayNum == 6:
     dayName = 'Sunday'                      
-           
   #print name of the day of the week to the screen      
   print('----------------------------------------------------------')
   print( 'The day you enetered was the following day of the week:')
   print( dayName ) 
   print('----------------------------------------------------------')    
-      
