@@ -52,7 +52,7 @@ def craps():
 
 import calendar #To print calendar to console
 import datetime #For date objects and other date functions
-
+from datetime import date
 
 def getIntWithinRange(promptMsg,low,high):
   """ Prompts user to input an integer value, verifies that is an integer in range, and returns it""" 
