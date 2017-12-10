@@ -8,13 +8,17 @@
 #PROBLEM 2:     birthMonthCal() prints calendar of birth month
 #               daysToBday() will calculate days left until your next birthday
 #               getDayOfWeek() can calculate the name of day of week Declaration of Independance was signed
+#        
+#               SPECIAL NOTE TO INSTRUCTOR:  We could used calendar.month(birthYear,birthMonth)
+#               To print easily the calendar, but the formatting wasn't right in JES is it is in IDLE
+#               We deciced to make our own formatting for the text using other datetime functions
 
 # ---------- Problem 1 LAB15----------
 
 from random import randint #allows for the use of randint() to randomly get variables
 
 def craps():
-    """ Plays the game of craps by contintuously rolling die until player wins """
+    """ Plays the game of craps by contintuously rolling die until player wins or loses! """
    
     rollNum = 0  #to hold the number of rolls the player has completed
     point = 0 #to hold points
@@ -49,14 +53,15 @@ def craps():
 import calendar #To print calendar to console
 import datetime #For date objects and other date functions
 
-
 def getIntWithinRange(promptMsg,low,high):
   """ Prompts user to input an integer value, verifies that is an integer in range, and returns it""" 
   """ Args: """
-  """ promptMsg: Message given to userto prompt for input"""    
-  """ low: serves as the low end of the range """
-  """ high: serves as the high end of the range """ 
-  """ Returns: Integer value given by user """
+  """   promptMsg: Message given to userto prompt for input"""    
+  """   low: serves as the low end of the range """
+  """   high: serves as the high end of the range """ 
+  """ Returns: """
+  """    Integer value given by user """
+  
   userInput = "" 
   while true:
     userInput = str(raw_input(promptMsg)) #get input form user 
@@ -68,17 +73,36 @@ def getIntWithinRange(promptMsg,low,high):
         print("OUT OF RANGE ERROR!  Please read input instructions!") 
     else:
       print("USER INPUT ERROR!  Please read input instructions!")               
-          
-        
+      
+
 def birthMonthCal():  
   """ Gets user to input their birth year and birth month."""
   """ prints a calendar of that month to console"""
   birthYear = getIntWithinRange('ENTER FOUR DIGIT BIRTH YEAR FROM 1901 TO 2017:  ',1901,2017)
   birthMonth = getIntWithinRange('ENTER BIRTH MONTH FROM 1 TO 12:  ',1,12)
-  print('\n' + calendar.month(birthYear,birthMonth) ) #print calendar to console
-  #TODO consider using calendar.monthcalendar(year,month) matrix for this operation to fix possible formatting conerns
+  cal = calendar.month(birthYear,birthMonth) #matrix for this operation to fix possible formatting conerns    
+  cal = cal.split() #splits each date into elements of a list
+  #iterate thru cal list and add blank spaces so that all days take up exactly three spaces 
+  for i in range(0, len(cal) ):
+     if len(cal[i]) == 1:      #for formatting purposes changes '4' to '  4'
+       cal[i] = '  ' + cal[i]
+     elif len(cal[i]) == 2:  
+       cal[i] = ' ' + cal[i]   #for formating purposes changes '22' to ' 22' 
+  firstDayOfMonthObj = datetime.datetime(birthYear,birthMonth,1) #create an object 
+  firstDayOfMonthNum = firstDayOfMonthObj.weekday() #get the day number of the first day of month          
+  #insert blank space elements in cal list for formatting purposes so first isn't always shown as Monday
+  for i in range(0,firstDayOfMonthNum):
+    cal.insert(9,'   ')
+  #print to console the calendar.  For loops needed to add spaces for formatting
+  print('----------------------------------------------------------')
+  print('\t' + cal[0] + '  ' + cal[1]) #prints the month and year
+  for i in range(2, len(cal)):
+    print '\t',cal[i], #comma here will make sure a new line isn't made every print function
+    if( ((i-1)%7) == 0): 
+      print('')
+  print('\n----------------------------------------------------------')
   
-
+  
 def daysToBday():
   """ Gets user to input their birht month and birth day """
   """ Prints to console screen the number of days until their next birthday"""
@@ -98,7 +122,6 @@ def daysToBday():
   print( difference.days ) 
   print('----------------------------------------------------------') 
   
-    
 def getDayOfWeek():
   """ Prompts the user to input a date """
   """ Prints that date to the console """  
@@ -106,7 +129,7 @@ def getDayOfWeek():
   month = getIntWithinRange('ENTER ITEGER VALUE FOR A MONTH FROM 1 TO 12:  ',1,12)
   day = getIntWithinRange('ENTER INTEGER VALUE FOR DAY: ',1,31) 
   userDate = date(year,month,day) #create a date object with user input
-  dayNum = userDate.weekday() # get the numerical day of the week from date object 0 = monday, 1 = Tueday, ...  
+  dayNum = userDate.weekday() # get numerical day of the week from date object 0=Monday, 1=Tueday, ...    
   #Use the number corresponding to the day of the week to assign name of the day
   if dayNum == 0:
     dayName = 'Monday'
@@ -121,7 +144,7 @@ def getDayOfWeek():
   elif dayNum == 5:
     dayName = 'Saturday'
   elif dayNum == 6:
-    dayName = 'Sunday'                      
+    dayName = 'Sunday'                                 
   #print name of the day of the week to the screen      
   print('----------------------------------------------------------')
   print( 'The day you enetered was the following day of the week:')
